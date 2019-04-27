@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="style.css">
-<title>FCC Calculator</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>FCC Calculator</title>
+  </head>
+  <body>
+    <div class="calculator">
+      <!-- Display Screen -->
+      <input
+        type="text"
+        class="calculator-screen"
+        placeholder="0"
+        value="0"
+        id="display"
+        disabled
+      />
+      <div class="calculator-keys">
+        <!-- Number Buttons -->
+        <button type="button" class="number" id="one">1</button>
+        <button type="button" class="number" id="two">2</button>
+        <button type="button" class="number" id="three">3</button>
+        <button type="button" class="number" id="four">4</button>
+        <button type="button" class="number" id="five">5</button>
+        <button type="button" class="number" id="six">6</button>
+        <button type="button" class="number" id="seven">7</button>
+        <button type="button" class="number" id="eight">8</button>
+        <button type="button" class="number" id="nine">9</button>
+        <button type="button" class="number" id="zero">0</button>
+        <!-- Operators -->
+        <button type="button" class="operator" value="+" id="add">
+          +
+        </button>
+        <button type="button" class="operator" value="-" id="subtract">
+          -
+        </button>
+        <button type="button" class="operator" value="*" id="multiply">
+          &times;
+        </button>
+        <button type="button" class="operator" value="/" id="divide">
+          &divide;
+        </button>
+        <!-- Others -->
+        <button type="button" class="decimal" value="." id="decimal">
+          .
+        </button>
+        <button type="button" class="all-clear" value="all-clear" id="clean">
+          AC
+        </button>
+        <button type="button" class="equal-sign" id="equals">=</button>
+      </div>
+    </div>
 
-<div class="calculator">
-<!-- Display Screen -->
-<input class="calculator-screen" placeholder="0" id="display">
-<div class="calculator-keys">
-<!-- Number Buttons -->
-<button class="button number" id="one">1</button>
-<button class="button number" id="two">2</button>
-<button class="button number" id="three">3</button>
-<button class="button number" id="four">4</button>
-<button class="button number" id="five">5</button>
-<button class="button number" id="six">6</button>
-<button class="button number" id="seven">7</button>
-<button class="button number" id="eight">8</button>
-<button class="button number" id="nine">9</button>
-<button class="button number" id="zero">0</button>
-<!-- Operators -->
-<button class="button operator" id="add">+</button>
-<button class="button operator" id="subtract">-</button>
-<button class="button operator" id="multiply">&times;</button>
-<button class="button operator" id="divide">&divide;</button>
-<button class="button operator" id="decimal">.</button>
-<!-- Others -->
-<button class="all-clear" id="clean">AC</button>
-<button class="equal-sign" id="equals">=</button>
-</div>
-</div>
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
