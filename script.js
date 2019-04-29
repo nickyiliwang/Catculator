@@ -1,61 +1,29 @@
 //Display box
 var displayBox = document.querySelector("#display");
-// Numbers
-var zero = document.querySelector("#zero");
-var one = document.querySelector("#one");
-var two = document.querySelector("#two");
-var three = document.querySelector("#three");
-var four = document.querySelector("#four");
-var five = document.querySelector("#five");
-var six = document.querySelector("#six");
-var seven = document.querySelector("#seven");
-var eight = document.querySelector("#eight");
-var nine = document.querySelector("#nine");
-//operator
-var plus = document.getElementById("add");
-var minus = document.querySelector("#subtract");
-var multiply = document.querySelector("#multiply");
-var divide = document.querySelector("#divide");
-//others
+//Buttons Variables
 var equal = document.querySelector("#equals");
 var clear = document.querySelector("#clean");
-var decimals = document.querySelector("#decimal");
-//all
-var calcNum = document.getElementsByClassName("number");
-var calcOperator = document.getElementsByClassName("operator");
 var allBtn = document.querySelectorAll(".button");
-
-//Logic
-//identify higher and lower priority calculations
-//do the higher priority calcs and then lower priority
-//display the result after the equal is pressed
-//if there are decimals involved go to the 7th
-
+var cats = document.querySelector(".cats");
+//Global Variables
 var recordedKeyPress = [];
-var isEqualTo = false;
 var resultToCalculate;
+
 onStart();
+
 function onStart() {
   recordAllKeyPresses();
-  equalCalculate();
-  clearAll();
+  iWantAnswersNowDammit();
+  getThisGarbageOuttaHere();
+  giveMeCatsDammit();
 }
-function equalCalculate() {
+
+function iWantAnswersNowDammit() {
   equal.addEventListener("click", function() {
-    isEqualTo = true;
-    calculate();
+    displayBox.placeholder = math.eval(resultToCalculate);
   });
 }
-function calculate() {
-  displayBox.placeholder = eval(resultToCalculate);
-}
-function clearAll() {
-  clear.addEventListener("click", function() {
-    isEqualTo = false;
-    displayBox.placeholder = "0";
-    resultToCalculate = "0";
-  });
-}
+
 function recordAllKeyPresses() {
   for (let i = 0; i < allBtn.length; i++) {
     allBtn[i].addEventListener("click", function() {
@@ -65,4 +33,29 @@ function recordAllKeyPresses() {
       return (displayBox.placeholder = recordedKeyPressStr);
     });
   }
+}
+
+function getThisGarbageOuttaHere() {
+  clear.addEventListener("click", function() {
+    displayBox.placeholder = "0";
+    recordedKeyPress = [];
+  });
+}
+
+function giveMeCatsDammit() {
+  var catArr = [
+    "url(https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1532386236358-a33d8a9434e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1503844281047-cf42eade5ca5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1548546738-8509cb246ed3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1457410129867-5999af49daf7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1526509177308-2073fcfbf0b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)",
+    "url(https://images.unsplash.com/photo-1479065476818-424362c3a854?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60)"
+  ];
+  cats.addEventListener("click", function() {
+    document.body.style.backgroundImage = catArr[math.floor(math.random(10))];
+  });
 }
