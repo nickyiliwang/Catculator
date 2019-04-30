@@ -15,3 +15,5 @@ Functions includes:
 Great User error prevention protocols such as: - input does not begin with multiple zeros - two decimal inputs in one number will not be accepted - if 2 or more operators are entered consecutively, only the last operator will remain
 
 AND CATS, SO MANY CUTE KITTENS AND FURRY LITTLE FRENS WAITING FOR YOU, WHAT YOU ARE WAITING FOR ?
+
+Thanks Math.js for providing the library, and unsplash for the pictures! 
