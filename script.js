@@ -2,12 +2,16 @@
 var displayBox = document.querySelector("#display");
 //Buttons Variables
 var equal = document.querySelector("#equals");
-var clear = document.querySelector("#clean");
-var allBtn = document.querySelectorAll(".button");
+var clear = document.querySelector("#clear");
+var numbers = document.querySelectorAll(".numbers");
+var operators = document.querySelectorAll(".operator");
 var cats = document.querySelector(".cats");
+var decimal = document.querySelector("#decimal");
 //Global Variables
-var recordedKeyPress = [];
+var recordedKeyPressArr = [];
 var resultToCalculate;
+var operatorCount = 0;
+var decimalCount = 0;
 
 onStart();
 
@@ -20,25 +24,84 @@ function onStart() {
 
 function iWantAnswersNowDammit() {
   equal.addEventListener("click", function() {
-    displayBox.placeholder = math.eval(resultToCalculate);
+    var result = math.eval(resultToCalculate);
+    displayBox.value = result;
+    recordedKeyPressArr = [result];
   });
 }
 
 function recordAllKeyPresses() {
-  for (let i = 0; i < allBtn.length; i++) {
-    allBtn[i].addEventListener("click", function() {
-      recordedKeyPress.push(allBtn[i].textContent);
-      var recordedKeyPressStr = recordedKeyPress.join("");
+  recordDecimals();
+  recordNumbers();
+  recordOperators();
+}
+
+function recordNumbers() {
+  for (let i = 0; i < numbers.length; i++) {
+    numbers[i].addEventListener("click", function() {
+      recordedKeyPressArr.push(numbers[i].textContent);
+      recordedKeyPressStr = recordedKeyPressArr.join("");
       resultToCalculate = recordedKeyPressStr;
-      return (displayBox.placeholder = recordedKeyPressStr);
+      operatorCount = 0;
+      reEvaluateInput();
+      reEvaluateOperators();
     });
   }
 }
 
+function recordDecimals() {
+  decimal.addEventListener("click", function() {
+    decimalCount++;
+    if (decimalCount <= 1) {
+      recordedKeyPressArr.push(decimal.textContent);
+      recordedKeyPressStr = recordedKeyPressArr.join("");
+      resultToCalculate = recordedKeyPressStr;
+      reEvaluateInput();
+    }
+  });
+}
+
+function recordOperators() {
+  for (let i = 0; i < operators.length; i++) {
+    operators[i].addEventListener("click", function() {
+      recordedKeyPressArr.push(operators[i].textContent);
+      recordedKeyPressStr = recordedKeyPressArr.join("");
+      resultToCalculate = recordedKeyPressStr;
+      reEvaluateOperators();
+      operatorCount++;
+      decimalCount = 0;
+      reEvaluateInput();
+      reEvaluateOperators();
+    });
+  }
+}
+
+function reEvaluateOperators() {
+  if (operatorCount == 2) {
+    recordedKeyPressArr = recordedKeyPressArr
+      .slice(0, recordedKeyPressArr.length - 2)
+      .concat(recordedKeyPressArr.pop());
+  }
+}
+
+function reEvaluateInput() {
+  var twoDecimals = "..";
+  resultToCalculate === "00"
+    ? (recordedKeyPressArr = [])
+    : recordedKeyPressStr.indexOf(twoDecimals) > -1
+    ? (recordedKeyPressArr = recordedKeyPressArr.slice(
+        0,
+        recordedKeyPressArr.length - 1
+      ))
+    : (displayBox.value = resultToCalculate);
+}
+
 function getThisGarbageOuttaHere() {
   clear.addEventListener("click", function() {
-    displayBox.placeholder = "0";
-    recordedKeyPress = [];
+    displayBox.value = 0;
+    decimalCount = 0;
+    operatorCount = 0;
+    recordedKeyPressArr = [];
   });
 }
 
