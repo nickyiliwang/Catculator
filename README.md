@@ -1,5 +1,7 @@
 # FCC-Calculator
 
+DEMO: https://codepen.io/nickyiliwang/pen/axMRPb
+
 JavaScript Calculator - Catculator
 
 This is a fully functional calculator with added feature to catify your calculating experience
